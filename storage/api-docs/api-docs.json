@@ -1,0 +1,613 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Laravel Swagger API Documentation",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/auth/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Login",
+                "description": "Logs in a user with valid credentials and returns a token.",
+                "operationId": "fe26ab8400b717f7892b280a17827c57",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful login",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Success login"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "access_token": {
+                                                    "type": "string",
+                                                    "example": "your-access-token"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Invalid credentials"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "errors": {
+                                                    "type": "object",
+                                                    "example": {
+                                                        "email": [
+                                                            "Invalid credentials"
+                                                        ]
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/auth/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Register a new user",
+                "description": "Registers a new user and returns a success message.",
+                "operationId": "285020423c933eac821839a8cda29844",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RegisterRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "User registered successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "User created successfully"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "access_token": {
+                                                    "type": "string",
+                                                    "example": "your-access-token"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "type": "object",
+                                            "example": {
+                                                "email": [
+                                                    "Invalid credentials"
+                                                ]
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unprocessable Entity"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/kost": {
+            "post": {
+                "tags": [
+                    "Kosts"
+                ],
+                "summary": "Tambah data kost",
+                "description": "Tambah data kost",
+                "operationId": "8de968cced2fda36a444c67481effccf",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AddKostRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Kost created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Kost created successfully"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "kost": {
+                                                    "$ref": "#/components/schemas/KostResource"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthorized"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Forbidden"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Validation error"
+                                        },
+                                        "errors": {
+                                            "description": "Validation error details",
+                                            "type": "object",
+                                            "example": {
+                                                "user_id": [
+                                                    "The user id field is required."
+                                                ],
+                                                "title": [
+                                                    "The title field is required."
+                                                ],
+                                                "description": [
+                                                    "The description field is required."
+                                                ],
+                                                "tipe_sewa": [
+                                                    "The tipe sewa field is required."
+                                                ],
+                                                "tahun_dibangun": [
+                                                    "The tahun dibangun field is required."
+                                                ],
+                                                "alamat": [
+                                                    "The alamat field is required."
+                                                ],
+                                                "provinsi": [
+                                                    "The provinsi field is required."
+                                                ],
+                                                "kota": [
+                                                    "The kota field is required."
+                                                ],
+                                                "kecamatan": [
+                                                    "The kecamatan field is required."
+                                                ],
+                                                "panjang_kamar": [
+                                                    "The panjang kamar field is required."
+                                                ],
+                                                "lebar_kamar": [
+                                                    "The lebar kamar field is required."
+                                                ],
+                                                "total_kamar": [
+                                                    "The total kamar field is required."
+                                                ],
+                                                "kamar_tersedia": [
+                                                    "The kamar tersedia field is required."
+                                                ],
+                                                "harga": [
+                                                    "The harga field is required."
+                                                ],
+                                                "status_biaya_tambahan": [
+                                                    "The status biaya tambahan field is required."
+                                                ],
+                                                "created_at": [
+                                                    "The created at field is required."
+                                                ],
+                                                "created_by": [
+                                                    "The created by field is required."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "AddKostRequest": {
+                "title": "Add Kost Request",
+                "description": "Request structure for storing a new post",
+                "required": [
+                    "user_id",
+                    "title",
+                    "description",
+                    "tipe_sewa",
+                    "tahun_dibangun",
+                    "catatan_lain",
+                    "alamat",
+                    "provinsi",
+                    "kota",
+                    "kecamatan",
+                    "latitude",
+                    "longitude",
+                    "catatan_alamat",
+                    "panjang_kamar",
+                    "lebar_kamar",
+                    "total_kamar",
+                    "kamar_tersedia",
+                    "harga",
+                    "minimum_lama_sewa",
+                    "harga_perhari",
+                    "harga_perminggu",
+                    "harga_per3bulan",
+                    "harga_per6bulan",
+                    "harga_pertahun",
+                    "status_biaya_tambahan",
+                    "deposit",
+                    "harga_uang_muka",
+                    "denda_keterlambatan",
+                    "batas_waktu",
+                    "batas_waktu_tipe",
+                    "created_at",
+                    "created_by"
+                ],
+                "properties": {
+                    "user_id": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "title": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "tipe_sewa": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "tahun_dibangun": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "catatan_lain": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "alamat": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "provinsi": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "kota": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "kecamatan": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "latitude": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "longitude": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "catatan_alamat": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "panjang_kamar": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "lebar_kamar": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "total_kamar": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "kamar_tersedia": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "harga": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "minimum_lama_sewa": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "harga_perhari": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "harga_perminggu": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "harga_per3bulan": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "harga_per6bulan": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "harga_pertahun": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "status_biaya_tambahan": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "deposit": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "harga_uang_muka": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "denda_keterlambatan": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "batas_waktu": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "batas_waktu_tipe": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "created_by": {
+                        "description": "",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "LoginRequest": {
+                "title": "Login Request",
+                "description": "Request structure for user login",
+                "required": [
+                    "email",
+                    "password"
+                ],
+                "properties": {
+                    "email": {
+                        "description": "Email user",
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "password": {
+                        "description": "Password user",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "RegisterRequest": {
+                "title": "Register Request",
+                "description": "Request structure for registering a new user",
+                "required": [
+                    "name",
+                    "email",
+                    "password",
+                    "tipe",
+                    "jenis_properti"
+                ],
+                "properties": {
+                    "name": {
+                        "description": "The name of the user",
+                        "type": "string"
+                    },
+                    "email": {
+                        "description": "The email address of the user",
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "password": {
+                        "description": "The password for the user",
+                        "type": "string",
+                        "format": "password"
+                    },
+                    "tipe": {
+                        "description": "The tipe for the user",
+                        "type": "string",
+                        "format": "tipe"
+                    },
+                    "jenis_properti": {
+                        "description": "The jenis properti for the user",
+                        "type": "string",
+                        "format": "jenis_properti"
+                    }
+                },
+                "type": "object"
+            },
+            "AuthorResource": {
+                "title": "Author Resource",
+                "description": "Author Resource",
+                "properties": {
+                    "id": {
+                        "description": "The unique identifier of the author",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "The name of the author",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "KostResource": {
+                "title": "Kost Resource",
+                "description": "Kost Resource",
+                "properties": {
+                    "id": {
+                        "description": "The unique identifier of the kost",
+                        "type": "integer"
+                    },
+                    "title": {
+                        "description": "The title of the kost",
+                        "type": "string"
+                    },
+                    "slug": {
+                        "description": "The slug of the kost",
+                        "type": "string"
+                    },
+                    "body": {
+                        "description": "The body of the kost",
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "description": "The timestamp when the kost was created",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/AuthorResource"
+                    },
+                    "updated_at": {
+                        "description": "The timestamp when the kost was last updated",
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "name": "Authorization",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Auth",
+            "description": "Authentication endpoints"
+        },
+        {
+            "name": "Auth",
+            "description": "Authentication endpoints"
+        },
+        {
+            "name": "Kosts",
+            "description": "Kost endpoints"
+        }
+    ]
+}
