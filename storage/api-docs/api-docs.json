@@ -155,11 +155,11 @@
         "/api/kost": {
             "post": {
                 "tags": [
-                    "Kosts"
+                    "Kost"
                 ],
                 "summary": "Tambah data kost",
                 "description": "Tambah data kost",
-                "operationId": "8de968cced2fda36a444c67481effccf",
+                "operationId": "ca3602b4ad55c4d8819670492fbac9fc",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -346,6 +346,7 @@
                     "batas_waktu",
                     "batas_waktu_tipe",
                     "created_at",
+                    "created_at",
                     "created_by"
                 ],
                 "properties": {
@@ -469,6 +470,10 @@
                         "description": "",
                         "type": "string"
                     },
+                    "created_at": {
+                        "description": "",
+                        "type": "string"
+                    },
                     "created_by": {
                         "description": "",
                         "type": "string"
@@ -534,53 +539,157 @@
                 },
                 "type": "object"
             },
-            "AuthorResource": {
-                "title": "Author Resource",
-                "description": "Author Resource",
-                "properties": {
-                    "id": {
-                        "description": "The unique identifier of the author",
-                        "type": "integer"
-                    },
-                    "name": {
-                        "description": "The name of the author",
-                        "type": "string"
-                    }
-                },
-                "type": "object"
-            },
             "KostResource": {
                 "title": "Kost Resource",
                 "description": "Kost Resource",
                 "properties": {
                     "id": {
-                        "description": "The unique identifier of the kost",
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "user_id": {
+                        "description": "",
                         "type": "integer"
                     },
                     "title": {
-                        "description": "The title of the kost",
+                        "description": "",
                         "type": "string"
                     },
-                    "slug": {
-                        "description": "The slug of the kost",
+                    "description": {
+                        "description": "",
                         "type": "string"
                     },
-                    "body": {
-                        "description": "The body of the kost",
+                    "tipe_sewa": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "tahun_dibangun": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "catatan_lain": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "alamat": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "provinsi": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "kota": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "kecamatan": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "latitude": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "longitude": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "catatan_alamat": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "panjang_kamar": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "lebar_kamar": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "total_kamar": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "kamar_tersedia": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "harga": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "minimum_lama_sewa": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "harga_perhari": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "harga_perminggu": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "harga_per3bulan": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "harga_per6bulan": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "harga_pertahun": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "status_biaya_tambahan": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "deposit": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "harga_uang_muka": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "denda_keterlambatan": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "batas_waktu": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "batas_waktu_tipe": {
+                        "description": "",
                         "type": "string"
                     },
                     "created_at": {
-                        "description": "The timestamp when the kost was created",
+                        "description": "",
                         "type": "string",
                         "format": "date-time"
                     },
-                    "user": {
-                        "$ref": "#/components/schemas/AuthorResource"
+                    "created_by": {
+                        "description": "",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "UserResource": {
+                "title": "User Resource",
+                "description": "User Resource",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "integer"
                     },
-                    "updated_at": {
-                        "description": "The timestamp when the kost was last updated",
-                        "type": "string",
-                        "format": "date-time"
+                    "name": {
+                        "description": "",
+                        "type": "string"
                     }
                 },
                 "type": "object"
@@ -606,7 +715,7 @@
             "description": "Authentication endpoints"
         },
         {
-            "name": "Kosts",
+            "name": "Kost",
             "description": "Kost endpoints"
         }
     ]

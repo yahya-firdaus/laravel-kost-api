@@ -7,22 +7,22 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * @OA\Schema(
- *     schema="AuthorResource",
- *     title="Author Resource",
- *     description="Author Resource",
+ *     schema="UserResource",
+ *     title="User Resource",
+ *     description="User Resource",
  *     @OA\Property(
  *         property="id",
  *         type="integer",
- *         description="The unique identifier of the author"
+ *         description=""
  *     ),
  *     @OA\Property(
  *         property="name",
  *         type="string",
- *         description="The name of the author"
+ *         description=""
  *     ),
  * )
  */
-class AuthorResource extends JsonResource
+class UserResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

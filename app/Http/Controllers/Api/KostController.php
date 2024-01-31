@@ -4,14 +4,15 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Helpers\ApiResponse;
-use App\Models\Post;
+use App\Models\Kost;
 use App\Http\Requests\Kost\AddKostRequest;
+use App\Http\Resources\KostResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 /**
  * @OA\Tag(
- *     name="Kosts",
+ *     name="Kost",
  *     description="Kost endpoints"
  * )
  */
@@ -22,7 +23,7 @@ class KostController extends Controller
      *     path="/api/kost",
      *     summary="Tambah data kost",
      *     description="Tambah data kost",
-     *     tags={"Kosts"},
+     *     tags={"Kost"},
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\MediaType(
@@ -137,6 +138,9 @@ class KostController extends Controller
      *                     "created_at": {
      *                         "The created at field is required."
      *                     },
+     *                     "created_at": {
+     *                         "The created at field is required."
+     *                     },
      *                     "created_by": {
      *                         "The created by field is required."
      *                     }
@@ -149,9 +153,21 @@ class KostController extends Controller
      *     }
      * )
      */
-    public function addkost(AddKostRequest $request)
+    public function store(AddKostRequest $request)
     {
         try {
+            // $created_at = date('Y-m-d H:i:s');
+
+            // $kost = Kost::create([
+            //     'name' => $request->name,
+            //     'email' => $request->email,
+            //     'password' => bcrypt($request->password),
+            //     'type' => $request->tipe,
+            //     'jenis_properti' => $request->jenis_properti,
+            //     'credit' => $credit,
+            //     'created_at' => $created_at,
+            //     'created_by' => $request->user_id
+            // ]);
             $validatedData = $request->validated();
             $kost = Kost::create($validatedData);
 

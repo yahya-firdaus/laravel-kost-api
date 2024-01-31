@@ -27,6 +27,6 @@ Route::group(["as" => "api."], function () {
             'auth:sanctum'
         ],
     ], function () {
-        Route::apiResource("kosts", KostController::class);
+        Route::apiResource("kost", KostController::class);
     });
 });

@@ -49,9 +49,6 @@ return new class extends Migration
             $table->string('updated_by', 150)->nullable();
             $table->dateTime('deleted_at')->nullable();
             $table->string('deleted_by', 150)->nullable();
-
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->softDeletes();
         });
     }
 
@@ -61,5 +58,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('kost');
+        Schema::table('kost', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
+        });
     }
 };

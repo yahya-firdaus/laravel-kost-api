@@ -16,9 +16,6 @@ return new class extends Migration
             $table->integer('kost_id');
             $table->string('nama_biaya', 70);
             $table->integer('total_biaya');
-
-            $table->foreign('kost_id')->references('id')->on('kost')->onDelete('cascade');
-            $table->softDeletes();
         });
     }
 
@@ -28,5 +25,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('biaya_tambahan');
+        Schema::table('biaya_tambahan', function (Blueprint $table) {
+            $table->foreign('kost_id')->references('id')->on('kost');
+        });
     }
 };

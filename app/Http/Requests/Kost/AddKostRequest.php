@@ -9,7 +9,7 @@ use Illuminate\Foundation\Http\FormRequest;
  *     schema="AddKostRequest",
  *     title="Add Kost Request",
  *     description="Request structure for storing a new post",
- *     required={"user_id", "title", "description", "tipe_sewa", "tahun_dibangun", "catatan_lain", "alamat", "provinsi", "kota", "kecamatan", "latitude", "longitude", "catatan_alamat", "panjang_kamar", "lebar_kamar", "total_kamar", "kamar_tersedia", "harga", "minimum_lama_sewa", "harga_perhari", "harga_perminggu", "harga_per3bulan", "harga_per6bulan", "harga_pertahun", "status_biaya_tambahan", "deposit", "harga_uang_muka", "denda_keterlambatan", "batas_waktu", "batas_waktu_tipe", "created_at", "created_by"},
+ *     required={"user_id", "title", "description", "tipe_sewa", "tahun_dibangun", "catatan_lain", "alamat", "provinsi", "kota", "kecamatan", "latitude", "longitude", "catatan_alamat", "panjang_kamar", "lebar_kamar", "total_kamar", "kamar_tersedia", "harga", "minimum_lama_sewa", "harga_perhari", "harga_perminggu", "harga_per3bulan", "harga_per6bulan", "harga_pertahun", "status_biaya_tambahan", "deposit", "harga_uang_muka", "denda_keterlambatan", "batas_waktu", "batas_waktu_tipe", "created_at", "created_at", "created_by"},
  *     @OA\Property(
  *         property="user_id",
  *         type="integer",
@@ -161,6 +161,11 @@ use Illuminate\Foundation\Http\FormRequest;
  *         description=""
  *     ),
  *     @OA\Property(
+ *         property="created_at",
+ *         type="string",
+ *         description=""
+ *     ),
+ *     @OA\Property(
  *         property="created_by",
  *         type="string",
  *         description=""
@@ -187,8 +192,7 @@ class AddKostRequest extends FormRequest
         return [
             'user_id' => [
                 'required',
-                'integer',
-                'exists:users,id'
+                'integer'
             ],
             'title' => [
                 'required',
@@ -289,6 +293,10 @@ class AddKostRequest extends FormRequest
                 'integer'
             ],
             'batas_waktu_tipe' => [
+                'string'
+            ],
+            'created_at' => [
+                'required',
                 'string'
             ],
             'created_by' => [

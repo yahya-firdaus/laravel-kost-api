@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('fasilitas_umum_kost', function (Blueprint $table) {
+        Schema::create('extras', function (Blueprint $table) {
             $table->id();
             $table->integer('kost_id');
             $table->integer('temporary_id');
-
-            $table->foreign('kost_id')->references('id')->on('kost')->onDelete('cascade');
-            $table->foreign('temporary_id')->references('id')->on('temporary')->onDelete('cascade');
-            $table->softDeletes();
+            $table->string('keterangan', 150);
         });
     }
 
@@ -27,6 +24,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('fasilitas_umum_kost');
+        Schema::dropIfExists('extras');
+        Schema::table('extras', function (Blueprint $table) {
+            $table->foreign('kost_id')->references('id')->on('kost');
+            $table->foreign('temporary_id')->references('id')->on('temporary');
+        });
     }
 };

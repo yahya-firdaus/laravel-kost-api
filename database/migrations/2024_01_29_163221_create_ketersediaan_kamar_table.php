@@ -17,9 +17,6 @@ return new class extends Migration
             $table->string('nama_kamar', 70);
             $table->integer('lantai');
             $table->boolean('kamar_terisi');
-
-            $table->foreign('kost_id')->references('id')->on('kost')->onDelete('cascade');
-            $table->softDeletes();
         });
     }
 
@@ -29,5 +26,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('ketersediaan_kamar');
+        Schema::table('ketersediaan_kamar', function (Blueprint $table) {
+            $table->foreign('kost_id')->references('id')->on('kost');
+        });
     }
 };
