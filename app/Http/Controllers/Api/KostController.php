@@ -514,4 +514,86 @@ class KostController extends Controller
             );
         }
     }
+
+    /**
+     * @OA\Delete(
+     *     path="/api/kost/{kost}",
+     *     summary="Delete a kost by ID",
+     *     description="Deletes a kost by its ID",
+     *     tags={"Kost"},
+     *     @OA\Parameter(
+     *         name="kost",
+     *         in="path",
+     *         required=true,
+     *         description="ID of the kost to delete",
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Kost deleted successfully",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 example="Kost deleted successfully"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 example="Unauthorized"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=403,
+     *         description="Forbidden",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 example="Forbidden"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Kost not found",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 example="Not Found"
+     *             )
+     *         )
+     *     ),
+     *     security={
+     *         {"bearerAuth": {}}
+     *     }
+     * )
+     */
+    public function destroy(Kost $kost)
+    {
+        try {
+            $kost->delete();
+
+            return ApiResponse::success(message: 'Kost deleted successfully', statusCode: Response::HTTP_NO_CONTENT);
+        } catch (\Exception $e) {
+            return ApiResponse::error(
+                message: "Failed to delete kost: {$e->getMessage()}",
+                statusCode: Response::HTTP_INTERNAL_SERVER_ERROR
+            );
+        }
+    }
 }
