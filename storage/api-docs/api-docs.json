@@ -157,7 +157,7 @@
                 "tags": [
                     "Kost"
                 ],
-                "summary": "Get a list of kost",
+                "summary": "Get list kost",
                 "description": "Returns a list of kost",
                 "operationId": "091d1f7068a9803adf7849e35fa500dc",
                 "parameters": [
@@ -401,6 +401,102 @@
                                                     "The created by field is required."
                                                 ]
                                             }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/kost/{kost}": {
+            "get": {
+                "tags": [
+                    "Kost"
+                ],
+                "summary": "Get kost by ID",
+                "description": "Retrieves a single kost by its ID",
+                "operationId": "dcc7d909904d7decea2508c6440ddf75",
+                "parameters": [
+                    {
+                        "name": "kost",
+                        "in": "path",
+                        "description": "ID of the kost to retrieve",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Kost retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "kost": {
+                                                    "$ref": "#/components/schemas/KostResource"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthorized"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Forbidden"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Kost not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Not Found"
                                         }
                                     },
                                     "type": "object"
