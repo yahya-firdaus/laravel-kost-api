@@ -152,6 +152,244 @@
                 }
             }
         },
+        "/api/chat": {
+            "get": {
+                "tags": [
+                    "Chat"
+                ],
+                "summary": "Get list chat by kost id",
+                "description": "Returns a list of chat by kost id",
+                "operationId": "eac7b4175ecdae280827e14c809b3d37",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "User Id",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "owner_id",
+                        "in": "query",
+                        "description": "Owner Id",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "kost_id",
+                        "in": "query",
+                        "description": "Kost Id",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response: List of chat kost",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "chat": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "$ref": "#/components/schemas/ChatResource"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized: Invalid credentials",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthorized"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden: Insufficient permissions",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Forbidden"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found: Chat not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Not Found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Chat"
+                ],
+                "summary": "Chat dengan owner",
+                "description": "Chat dengan owner",
+                "operationId": "b20304b5bc741340e32dd418ca10b60c",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AddChatRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Chat created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Chat created successfully"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "chat": {
+                                                    "$ref": "#/components/schemas/ChatResource"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthorized"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Forbidden"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Validation error"
+                                        },
+                                        "errors": {
+                                            "description": "Validation error details",
+                                            "type": "object",
+                                            "example": {
+                                                "user_id": [
+                                                    "The user id field is required."
+                                                ],
+                                                "owner_id": [
+                                                    "The owner id field is required."
+                                                ],
+                                                "kost_id": [
+                                                    "The kost id field is required."
+                                                ],
+                                                "text": [
+                                                    "The text field is required."
+                                                ],
+                                                "created_at": [
+                                                    "The created at field is required."
+                                                ],
+                                                "created_by": [
+                                                    "The created by field is required."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/kost": {
             "get": {
                 "tags": [
@@ -772,8 +1010,8 @@
                 "tags": [
                     "Show Kost"
                 ],
-                "summary": "Get list kost",
-                "description": "Returns a list of kost",
+                "summary": "Get list kost by search",
+                "description": "Returns a list of kost by search",
                 "operationId": "487b55f4b79b6b027d248fa292b23030",
                 "parameters": [
                     {
@@ -976,6 +1214,43 @@
     },
     "components": {
         "schemas": {
+            "AddChatRequest": {
+                "title": "Add Chat Request",
+                "description": "Request structure for storing a new post",
+                "required": [
+                    "user_id",
+                    "owner_id",
+                    "kost_id",
+                    "text"
+                ],
+                "properties": {
+                    "user_id": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "owner_id": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "kost_id": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "text": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "created_by": {
+                        "description": "",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
             "AddKostRequest": {
                 "title": "Add Kost Request",
                 "description": "Request structure for storing a new post",
@@ -1374,6 +1649,38 @@
                 },
                 "type": "object"
             },
+            "ChatResource": {
+                "title": "Chat Resource",
+                "description": "Chat Resource",
+                "properties": {
+                    "user_id": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "owner_id": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "kost_id": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "text": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "description": "",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "created_by": {
+                        "description": "",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
             "KostResource": {
                 "title": "Kost Resource",
                 "description": "Kost Resource",
@@ -1548,6 +1855,10 @@
         {
             "name": "Auth",
             "description": "Authentication endpoints"
+        },
+        {
+            "name": "Chat",
+            "description": "Chat endpoints"
         },
         {
             "name": "Kost",

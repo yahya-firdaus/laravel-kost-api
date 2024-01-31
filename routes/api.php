@@ -3,6 +3,8 @@
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\RegisterController;
 use App\Http\Controllers\Api\KostController;
+use App\Http\Controllers\Api\ShowKostController;
+use App\Http\Controllers\Api\ChatController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,5 +38,13 @@ Route::group(["as" => "api."], function () {
         ],
     ], function () {
         Route::apiResource("showkost", ShowKostController::class);
+    });
+
+    Route::group([
+        'middleware' => [
+            'auth:sanctum'
+        ],
+    ], function () {
+        Route::apiResource("chat", ChatController::class);
     });
 });
