@@ -47,4 +47,12 @@ Route::group(["as" => "api."], function () {
     ], function () {
         Route::apiResource("chat", ChatController::class);
     });
+
+    Route::group([
+        'middleware' => [
+            'auth:sanctum'
+        ],
+    ], function () {
+        Route::apiResource("owner-dashboard", OwnerDashboardController::class);
+    });
 });

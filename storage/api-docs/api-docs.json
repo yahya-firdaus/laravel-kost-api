@@ -1005,6 +1005,94 @@
                 ]
             }
         },
+        "/api/owner-dashboard": {
+            "get": {
+                "tags": [
+                    "Owner Dashboard"
+                ],
+                "summary": "Get owner dashboard",
+                "description": "Show data for dashboard",
+                "operationId": "ed802a0dd0476a579668c8332757995e",
+                "responses": {
+                    "200": {
+                        "description": "Successful response: Data for owner dashboard",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "kost": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "$ref": "#/components/schemas/KostResource"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized: Invalid credentials",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthorized"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden: Insufficient permissions",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Forbidden"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found: Data not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Not Found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/showkost/search": {
             "get": {
                 "tags": [
@@ -1015,23 +1103,39 @@
                 "operationId": "487b55f4b79b6b027d248fa292b23030",
                 "parameters": [
                     {
-                        "name": "limit",
+                        "name": "name",
                         "in": "query",
-                        "description": "Number of kost per page (default is 5)",
+                        "description": "search by name",
                         "required": false,
                         "schema": {
-                            "type": "integer",
-                            "default": 5
+                            "type": "string"
                         }
                     },
                     {
-                        "name": "page",
+                        "name": "location",
                         "in": "query",
-                        "description": "Current page (default is 1)",
+                        "description": "search by location",
                         "required": false,
                         "schema": {
-                            "type": "integer",
-                            "default": 1
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "price",
+                        "in": "query",
+                        "description": "search by price",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "sort by price",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
                         }
                     }
                 ],
@@ -1863,6 +1967,10 @@
         {
             "name": "Kost",
             "description": "Kost endpoints"
+        },
+        {
+            "name": "Owner Dashboard",
+            "description": "Owner dashboard endpoints"
         },
         {
             "name": "Show Kost",

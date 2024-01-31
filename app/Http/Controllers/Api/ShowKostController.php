@@ -26,23 +26,39 @@ class ShowKostController extends Controller
      *     description="Returns a list of kost by search",
      *     tags={"Show Kost"},
      *     @OA\Parameter(
-     *         name="limit",
+     *         name="name",
      *         in="query",
-     *         description="Number of kost per page (default is 5)",
+     *         description="search by name",
      *         required=false,
      *         @OA\Schema(
-     *             type="integer",
-     *             default=5
+     *             type="string"
      *         )
      *     ),
      *     @OA\Parameter(
-     *         name="page",
+     *         name="location",
      *         in="query",
-     *         description="Current page (default is 1)",
+     *         description="search by location",
      *         required=false,
      *         @OA\Schema(
-     *             type="integer",
-     *             default=1
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="price",
+     *         in="query",
+     *         description="search by price",
+     *         required=false,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="sort",
+     *         in="query",
+     *         description="sort by price",
+     *         required=false,
+     *         @OA\Schema(
+     *             type="boolean"
      *         )
      *     ),
      *     @OA\Response(
