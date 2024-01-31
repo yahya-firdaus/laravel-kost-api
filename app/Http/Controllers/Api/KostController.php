@@ -156,18 +156,6 @@ class KostController extends Controller
     public function store(AddKostRequest $request)
     {
         try {
-            // $created_at = date('Y-m-d H:i:s');
-
-            // $kost = Kost::create([
-            //     'name' => $request->name,
-            //     'email' => $request->email,
-            //     'password' => bcrypt($request->password),
-            //     'type' => $request->tipe,
-            //     'jenis_properti' => $request->jenis_properti,
-            //     'credit' => $credit,
-            //     'created_at' => $created_at,
-            //     'created_by' => $request->user_id
-            // ]);
             $validatedData = $request->validated();
             $kost = Kost::create($validatedData);
 
