@@ -1,6 +1,6 @@
 # laravel-kost-api
 
-Step by step guide of how to install and use your project in normal environment
+Step by step guide of how to install and use project in normal environment
 
 ## System Requirements
 ```
