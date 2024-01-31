@@ -19,6 +19,101 @@ use Illuminate\Http\Response;
 class KostController extends Controller
 {
     /**
+     * @OA\Get(
+     *     path="/api/kost",
+     *     summary="Get list kost",
+     *     description="Returns a list of kost",
+     *     tags={"Kost"},
+     *     @OA\Parameter(
+     *         name="limit",
+     *         in="query",
+     *         description="Number of kost per page (default is 5)",
+     *         required=false,
+     *         @OA\Schema(
+     *             type="integer",
+     *             default=5
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="page",
+     *         in="query",
+     *         description="Current page (default is 1)",
+     *         required=false,
+     *         @OA\Schema(
+     *             type="integer",
+     *             default=1
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful response: List of kost",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="data",
+     *                 type="object",
+     *                 @OA\Property(
+     *                     property="kost",
+     *                     type="array",
+     *                     @OA\Items(ref="#/components/schemas/KostResource")
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized: Invalid credentials",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 example="Unauthorized"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=403,
+     *         description="Forbidden: Insufficient permissions",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 example="Forbidden"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Not Found: Kost not found",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 example="Not Found"
+     *             )
+     *         )
+     *     ),
+     *     security={
+     *         {"bearerAuth": {}}
+     *     }
+     * )
+     */
+    public function index(Request $request)
+    {
+        $limit = $request->query('limit', 5);
+        $kost = Kost::with("user")->paginate($limit);
+
+        return ApiResponse::success(
+            data: [
+                'kost' => KostResource::collection($kost)
+            ]
+        );
+    }
+
+    /**
      * @OA\Post(
      *     path="/api/kost",
      *     summary="Tambah data kost",
