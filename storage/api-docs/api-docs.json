@@ -510,6 +510,171 @@
                         "bearerAuth": []
                     }
                 ]
+            },
+            "put": {
+                "tags": [
+                    "Kost"
+                ],
+                "summary": "Update a kost by ID",
+                "description": "Updates a kost by its ID",
+                "operationId": "054c6dd961bf90df76893fb83fdb2fa7",
+                "parameters": [
+                    {
+                        "name": "kost",
+                        "in": "path",
+                        "description": "ID of the kost to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateKostRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Kost updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Kost updated successfully"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "post": {
+                                                    "$ref": "#/components/schemas/KostResource"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthorized"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Forbidden"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Validation error"
+                                        },
+                                        "errors": {
+                                            "description": "Validation error details",
+                                            "type": "object",
+                                            "example": {
+                                                "user_id": [
+                                                    "The user id field is required."
+                                                ],
+                                                "title": [
+                                                    "The title field is required."
+                                                ],
+                                                "description": [
+                                                    "The description field is required."
+                                                ],
+                                                "tipe_sewa": [
+                                                    "The tipe sewa field is required."
+                                                ],
+                                                "tahun_dibangun": [
+                                                    "The tahun dibangun field is required."
+                                                ],
+                                                "alamat": [
+                                                    "The alamat field is required."
+                                                ],
+                                                "provinsi": [
+                                                    "The provinsi field is required."
+                                                ],
+                                                "kota": [
+                                                    "The kota field is required."
+                                                ],
+                                                "kecamatan": [
+                                                    "The kecamatan field is required."
+                                                ],
+                                                "panjang_kamar": [
+                                                    "The panjang kamar field is required."
+                                                ],
+                                                "lebar_kamar": [
+                                                    "The lebar kamar field is required."
+                                                ],
+                                                "total_kamar": [
+                                                    "The total kamar field is required."
+                                                ],
+                                                "kamar_tersedia": [
+                                                    "The kamar tersedia field is required."
+                                                ],
+                                                "harga": [
+                                                    "The harga field is required."
+                                                ],
+                                                "status_biaya_tambahan": [
+                                                    "The status biaya tambahan field is required."
+                                                ],
+                                                "created_at": [
+                                                    "The created at field is required."
+                                                ],
+                                                "created_by": [
+                                                    "The created by field is required."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         }
     },
@@ -518,6 +683,176 @@
             "AddKostRequest": {
                 "title": "Add Kost Request",
                 "description": "Request structure for storing a new post",
+                "required": [
+                    "user_id",
+                    "title",
+                    "description",
+                    "tipe_sewa",
+                    "tahun_dibangun",
+                    "catatan_lain",
+                    "alamat",
+                    "provinsi",
+                    "kota",
+                    "kecamatan",
+                    "latitude",
+                    "longitude",
+                    "catatan_alamat",
+                    "panjang_kamar",
+                    "lebar_kamar",
+                    "total_kamar",
+                    "kamar_tersedia",
+                    "harga",
+                    "minimum_lama_sewa",
+                    "harga_perhari",
+                    "harga_perminggu",
+                    "harga_per3bulan",
+                    "harga_per6bulan",
+                    "harga_pertahun",
+                    "status_biaya_tambahan",
+                    "deposit",
+                    "harga_uang_muka",
+                    "denda_keterlambatan",
+                    "batas_waktu",
+                    "batas_waktu_tipe",
+                    "created_at",
+                    "created_at",
+                    "created_by"
+                ],
+                "properties": {
+                    "user_id": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "title": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "tipe_sewa": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "tahun_dibangun": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "catatan_lain": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "alamat": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "provinsi": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "kota": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "kecamatan": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "latitude": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "longitude": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "catatan_alamat": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "panjang_kamar": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "lebar_kamar": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "total_kamar": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "kamar_tersedia": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "harga": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "minimum_lama_sewa": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "harga_perhari": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "harga_perminggu": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "harga_per3bulan": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "harga_per6bulan": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "harga_pertahun": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "status_biaya_tambahan": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "deposit": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "harga_uang_muka": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "denda_keterlambatan": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "batas_waktu": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "batas_waktu_tipe": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "created_by": {
+                        "description": "",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "UpdateKostRequest": {
+                "title": "Update Kost Request",
+                "description": "Request structure for updating a kost",
                 "required": [
                     "user_id",
                     "title",
