@@ -29,4 +29,12 @@ Route::group(["as" => "api."], function () {
     ], function () {
         Route::apiResource("kost", KostController::class);
     });
+
+    Route::group([
+        'middleware' => [
+            'auth:sanctum'
+        ],
+    ], function () {
+        Route::apiResource("showkost", ShowKostController::class);
+    });
 });
